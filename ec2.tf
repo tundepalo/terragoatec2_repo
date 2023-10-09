@@ -303,6 +303,16 @@ resource "aws_s3_bucket" "flowbucket_destination" {
   }
 }
 
+
+resource "aws_s3_bucket_versioning" "flowbucket_destination" {
+  bucket = aws_s3_bucket.flowbucket_destination.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+
 resource "aws_iam_role" "flowbucket_replication" {
   name = "aws-iam-role"
   assume_role_policy = <<POLICY
